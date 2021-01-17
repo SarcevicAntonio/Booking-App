@@ -2,6 +2,8 @@
 
 This app was written for an assignment in a distributed database course.
 
+![Image of the Booking App Frontend](https://i.imgur.com/pTLVJFs.png)
+
 We had the assignment to create an app with the following loose requirements:
 * Booking App to be internally used by Sales Agents to register new reservations
 * multiple travel tours / boats with different capacities
@@ -11,7 +13,7 @@ We had the assignment to create an app with the following loose requ
 The issue is, that you don't want too much overbooking. So we create an allowance for every sales agent at sync. 
 Our solution implemented Couch DB with a WebApp based frontend plus a server side script for pending bookings that were above the allowance.
 
-The web app was originally written using just jQuery and PouchDB. I later rewrote it in Svelte because i wanted to learn it. It's excellent. I've also added more features since the new codebase is much better to work in.
+The web app was originally written using just jQuery and PouchDB. I later rewrote it in Svelte because i wanted to learn it. It's excellent. I've also added more features (auth, printing of reservations, adding themes, markdown tour descriptions) since the new codebase is much better to work in.
 
 ## Getting Started
 * Clone Repo
