@@ -1,0 +1,113 @@
+/* Add CSS styles here! */
+:root {
+  --white: white;
+  --black: black;
+  --bg: #33135C;
+  --ground: #33135C;
+  --mid: #652EC7;
+  --highlight: #DE38C8;
+  --accent: #FFD300;
+}
+
+* {
+  font-family: "Roboto Mono", "Consolas", monospace;
+  color: var(--white);
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+body {
+  background-color: var(--ground);
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+button {
+  background-color: var(--highlight);
+  color: var(--black);
+  padding: 8px;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+button:disabled {
+  background-color: var(--mid) !important;
+  color: var(--white) !important;
+}
+
+.wide-btn {
+  background-color: var(--highlight);
+  color: var(--black);
+  width: 100%;
+  margin-top: 8px;
+}
+
+label {
+  display: block;
+  margin-top: 8px;
+}
+
+input,
+textarea {
+  display: block;
+  background-color: var(--bg);
+  padding: 8px;
+  margin-top: 4px;
+  border-radius: 8px;
+  width: 100%;
+}
+
+.center {
+  text-align: center;
+}
+
+.space-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.space-between>label {
+  width: 100%;
+}
+
+.spacer {
+  width: 16px;
+}
+
+.section {
+  margin: 32px 10%;
+  background-color: var(--mid);
+  border-radius: 8px;
+  padding: 8px;
+}
+
+@media only screen and (max-width: 768px) {
+  .section {
+    margin: 8px;
+  }
+}
+
+.item {
+  background-color: var(--bg);
+  color: var(--white);
+  border-radius: 8px;
+  margin: 8px 0 0;
+  padding: 8px;
+}
+
+.divider {
+  margin: 8px 0 8px;
+  border-top: 1px solid var(--mid);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  margin: auto;
+  border-radius: 8px;
+}
+

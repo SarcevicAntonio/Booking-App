@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VI Client</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.3/dist/alpine.min.js" defer></script>
+  <script src="//cdn.jsdelivr.net/npm/pouchdb@7.2.1/dist/pouchdb.min.js"></script>
+  <script src="https://github.com/pouchdb-community/pouchdb-authentication/releases/download/v1.1.3/pouchdb.authentication.min.js"></script>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body class="blue-grey lighten-5">
+
+  <!-- Top Bar -->
+  <nav>
+    <div class="nav-wrapper blue-grey darken-4">
+      <div class="container">
+        <a href="#" class="header white-text">Pirate Bay Tours</a>
+        <ul class="right">
+          <li>
+            <a class="waves-effect waves-light btn green btn-flat white-text" id="sync">
+              <i class="material-icons left">sync</i>Sync Now
+            </a>
+          </li>
+          <li>
+            <a class="waves-effect waves-light btn green btn-flat white-text modal-trigger" href="#loginModal" id="auth-open">
+              <i class="material-icons left">person</i>Login / Sign Up
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="row" id="logged-out">
+    <br>
+    <h3 class="center">Please login!</h3>
+  </div>
+
+  <div class="row" id="logged-in">
+    <div class="container">
+      <!-- To Contact -->
+      <div class="col s12">
+        <ul class="z-depth-1 collection with-header" id="contact-container"></ul>
+      </div>
+      <!--
+      --  Tour Management
+      -->
+
+      <!-- Tour List -->
+      <div class="col s12">
+        <h3>Tour Management</h3>
+        <ul class="collapsible" id="tour-list-body">
+          <li>
+            <div class="collapsible-header"><i class="material-icons">error</i>No Tours</div>
+            <div class="collapsible-body"><span>Create a new Tour below.</span></div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Create Tour  -->
+      <div class="col s12">
+        <ul class="collapsible">
+          <li>
+            <div class="collapsible-header"><i class="material-icons tour-display-icon">add</i>Create New Tour</div>
+            <div class="collapsible-body" id="tour-fields">
+              <div class="row red-text center" id="tour-form-error">Some fields are empty or wrong!</div>
+              <div class="row">
+                <div class="input-field col s12 m1 tooltipped" data-position="bottom"
+                  data-tooltip="Use Material-Icon names">
+                  <input id="tour-icon" type="text" class="validate" value="tour">
+                  <label for="tour-icon">Tour Icon</label>
+                </div>
+                <div class="input-field col s12 m11">
+                  <input id="tour-name" type="text" class="validate">
+                  <label for="tour-name">Tour Name</label>
+                </div>
+                <div class="input-field col s12">
+                  <input id="tour-passenger" type="number" class="validate" value="100">
+                  <label for="tour-passenger">Max. Number of Passengers</label>
+                </div>
+              </div>
+              <div class="row no-marge">
+                <a class="waves-effect waves-light btn col s12 green btn-flat white-text" id="submit-tour">
+                  <i class="material-icons left">add</i>Create Tour
+                </a>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Booking Modal -->
+      <div id="bookingModal" class="modal">
+        <div class="modal-content">
+          <div id="res-form">
+            <h4>Add New Reservation</h4>
+            <div class="row red-text center" id="res-form-error">Some fields are empty or wrong!</div>
+            <div class="row">
+              <h5>Contact Info</h5>
+              <form class="col s12">
+                <div class="row">
+                  <div class="input-field col s12 m6">
+                    <input id="res-first-name" type="text" class="validate">
+                    <label for="res-first-name">First Name</label>
+                  </div>
+                  <div class="input-field col s12 m6">
+                    <input id="res-last-name" type="text" class="validate">
+                    <label for="res-last-name">Last Name</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s12 m6">
+                    <input id="res-phone" type="text" class="validate">
+                    <label for="res-phone">Phone</label>
+                  </div>
+                  <div class="input-field col s12 m6">
+                    <input id="res-email" type="text" class="validate">
+                    <label for="res-email">E-Mail</label>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="row">
+              <h5>Group Info</h5>
+              <form class="col s12">
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input id="res-group-size" type="number" class="validate" value="1">
+                    <label for="res-group-size">Number of Group Members</label>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <h4 class="row orange-text center" id="res-form-held">Reservation will be held back till the next sync.</h4>
+          <h4 class="row green-text center" id="res-form-succ">Reservation successfully booked!</h4>
+          <div class="row no-marge">
+            <a class="waves-effect waves-light btn col s12 green btn-flat white-text" id="submit-reservation">
+              <i class="material-icons left">add</i>Add Reservation
+            </a>
+          </div>
+          <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green red-text btn-flat">Close Modal</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!-- Login Modal -->
+  <div id="loginModal" class="modal">
+    <div class="modal-content" id="login-modal-content">
+      <h4>Please enter credentials</h4>
+      <div class="row red-text center" id="auth-form-error">Some fields are empty or wrong!</div>
+      <div class="input-field col s12">
+        <input id="user-name" type="text" class="validate">
+        <label for="user-name">Username</label>
+      </div>
+      <div class="input-field col s12">
+        <input id="user-pwd" type="text" class="validate">
+        <label for="user-pwd">Password</label>
+      </div>
+      <p class="col s12">
+        <label>
+          <input type="checkbox" class="filled-in" id="auth-checkbox"/>
+          <span>Create new user (instead of logging in existing)</span>
+        </label>
+      </p>
+      <div class="row no-marge">
+        <a class="waves-effect waves-light btn col s12 green btn-flat white-text" id="submit-auth">
+          <i class="material-icons left">login</i>Authenticate
+        </a>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green red-text btn-flat">Close Modal</a>
+    </div>
+  </div>
+</body>
+<script src="./script.js"></script>
+
+</html>

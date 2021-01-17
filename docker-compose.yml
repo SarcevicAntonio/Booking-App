@@ -1,0 +1,21 @@
+version: "3"
+services:
+  app:
+    build:
+      context: ./app/
+    ports:
+      - "8000:8000"
+
+  couch:
+    build:
+      context: ./couch/
+    volumes:
+      - ./couch/data:/opt/couchdb/data
+    ports:
+      - "5984:5984"
+
+  pbscript:
+    build:
+      context: ./pbscript/
+    ports:
+      - "8080:8080"

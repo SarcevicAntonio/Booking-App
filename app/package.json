@@ -1,0 +1,21 @@
+{
+  "scripts": {
+    "start": "snowpack dev --polyfill-node",
+    "build": "snowpack build --polyfill-node",
+    "test": "echo \"This template does not include a test runner by default.\" && exit 1"
+  },
+  "devDependencies": {
+    "@snowpack/plugin-svelte": "^3.4.1",
+    "snowpack": "^2.18.4"
+  },
+  "dependencies": {
+    "dayjs": "^1.10.3",
+    "marked": "^1.2.7",
+    "pouchdb-auth": "^4.2.0",
+    "pouchdb-browser": "^7.2.2",
+    "print-js": "^1.5.0",
+    "svelte": "^3.31.1",
+    "svelte-materialify": "^0.3.4",
+    "svelte-preprocess": "^4.6.1"
+  }
+}

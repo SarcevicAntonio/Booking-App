@@ -1,0 +1,68 @@
+/* utility */
+.no-marge {
+  margin: 0;
+}
+
+.declined {
+  color: red;
+}
+
+.successful, .success {
+  color: #4CAF50;
+}
+
+.modal { 
+  max-height: 90%;
+}
+
+.inner-collapsible {
+  padding: 0;
+}
+
+.header {
+  font-size: 26px;
+}
+
+label {
+  color: black;
+}
+
+/* sync indicator */
+#sync.offline {
+  background-color: red !important;
+}
+
+#sync.sync {
+  background-color: blueviolet !important;
+}
+
+/* tabs override */
+.tabs .tab a {
+  color: white;
+}
+
+.tabs .tab a:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  color: white;
+}
+
+.tabs .tab a.active {
+  background-color: rgba(0, 0, 0, 0.2) !important;
+  color: white;
+}
+
+.tabs .indicator {
+  background-color: white;
+}
+
+.delete-to-contact {
+  /* height: 20px !important;
+  line-height: 22px; */
+}
+
+/* tours */
+
+.tour-header-detail {
+  margin-left: 20px;
+  color: rgba(0, 0, 0, 0.4)
+}
