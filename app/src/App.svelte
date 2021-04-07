@@ -4,6 +4,7 @@
   import ThemeSwitcher from "./components/ThemeSwitcher.svelte";
   import Tours from "./Tours/Tours.svelte";
   import dayjs from 'dayjs';
+  import OfflineIndicator from "./components/OfflineIndicator.svelte";
 
 
   let loggedIn = true;
@@ -40,6 +41,7 @@
 <header class="space-between">
   <h1>🏴‍☠️ Pirate Bay Tours Booking Client</h1>
   <div>
+    <OfflineIndicator />
     <ThemeSwitcher />
     <!-- todo: user management -->
     <Login bind:loggedIn />

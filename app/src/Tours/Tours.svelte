@@ -141,7 +141,19 @@
 
   onMount(() => {
     sync();
+    handleShortcut();
   });
+
+  function handleShortcut() {
+    const pathname = window.location.pathname.toLocaleLowerCase();
+    switch (pathname) {
+      case "/createtour":
+        tourModal.open();
+        break;
+      default:
+        break;
+    }
+  }
 
   function handleRemovePendingBooking(event) {
     bookingsNeedContact

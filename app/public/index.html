@@ -4,12 +4,24 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Pirate Bay Tours" />
-    <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" />
+    <link rel="stylesheet" href="/ress.min.css" />
     <link rel="stylesheet" type="text/css" href="/index.css" />
-    <script src="https://unpkg.com/focus-visible@latest/dist/focus-visible.min.js"></script>
     <title>Pirate Bay Tours Booking Client</title>
+    <link rel="manifest" href="/manifest.json" />
+    <script src="/pwa.js"></script>
+    <style>
+      #push-button,
+      .js-subscription-details {
+        position: absolute;
+        z-index: 9999;
+        bottom: 0;
+        left: 0;
+      }
+    </style>
   </head>
   <body>
+    <button id="push-button"></button>
+    <pre class="js-subscription-json"></pre>
     <script type="module" src="/dist/index.js"></script>
   </body>
 </html>
